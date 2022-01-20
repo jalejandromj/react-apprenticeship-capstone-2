@@ -12,10 +12,15 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src --ext .js,.jsx",
+    "lint:fix": "eslint ./src --ext .js,.jsx --fix",
+    "start": "react-scripts start",
+    "stylelint": "stylelint src/*.css src/**/*.css",
+    "stylelint:fix": "stylelint src/*.css src/**/*.css --fix",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "verify": "npm run lint && npm run stylelint"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +39,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-plugin-react": "^7.28.0",
+    "prettier": "2.5.1",
+    "stylelint": "^14.2.0",
+    "stylelint-config-standard": "^24.0.0"
   }
 }

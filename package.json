@@ -17,6 +17,7 @@
     "lint": "eslint ./src --ext .js,.jsx",
     "lint:fix": "eslint ./src --ext .js,.jsx --fix",
     "start": "react-scripts start",
+    "prepare": "husky install",
     "stylelint": "stylelint src/*.css src/**/*.css",
     "stylelint:fix": "stylelint src/*.css src/**/*.css --fix",
     "test": "react-scripts test",
@@ -43,6 +44,7 @@
   "devDependencies": {
     "eslint": "^8.7.0",
     "eslint-plugin-react": "^7.28.0",
+    "husky": "^7.0.4",
     "prettier": "2.5.1",
     "stylelint": "^14.2.0",
     "stylelint-config-standard": "^24.0.0"

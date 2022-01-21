@@ -20,19 +20,19 @@ function Layout({ children }) {
       <div id="header" className={checked ? 'blue-theme' : 'discreet-theme'}>
         <div>
           <Row>
-            <Col md={1} lg={1} style={{ justifyContent: 'center' }}>
-              <figure
+            <Col md={1} lg={2} xl={3} style={{ justifyContent: 'center' }}>
+              <p
                 className={checked ? 'blue-theme' : 'discreet-theme'}
                 onClick={() => setDisplaySidebar(!displaySidebar)}
               >
                 SVG
-              </figure>
+              </p>
             </Col>
-            <Col md={8} lg={8} style={{ alignItems: 'center' }}>
+            <Col md={7} lg={6} xl={3} style={{ alignItems: 'center' }}>
               Search bar
             </Col>
             <Col
-              md={2} lg={2}
+              md={2} lg={2} xl={3}
               style={{ alignItems: 'center', justifyContent: 'center' }}
             >
               <button
@@ -44,10 +44,10 @@ function Layout({ children }) {
               ></button>
             </Col>
             <Col
-              md={1} lg={1}
+              md={2} lg={2} xl={3}
               style={{ alignItems: 'center', justifyContent: 'center' }}
             >
-              Dropdown
+              Disp
             </Col>
           </Row>
         </div>

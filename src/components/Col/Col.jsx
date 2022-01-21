@@ -25,9 +25,9 @@ const ColDiv = styled.div`
   }
 `;
 
-function Col({children, md, lg, xl}) {
+function Col({children, style, md, lg, xl}) {
   return (
-    <ColDiv md={md} lg={lg} xl={xl}>{children}</ColDiv>
+    <ColDiv md={md} lg={lg} xl={xl} style={style}>{children}</ColDiv>
   );
 }
 

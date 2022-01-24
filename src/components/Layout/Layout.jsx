@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { useGeneralContext } from '../../state/GeneralContext';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 
@@ -36,12 +37,12 @@ const MainContainer = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 5% 3%;
+  padding: 3% 2%;
   overflow-y: scroll;
 `;
 
 function Layout({ children }) {
-  const displaySidebar = true;
+  const { displaySidebar } = useGeneralContext();
 
   return (
     <LayoutDiv

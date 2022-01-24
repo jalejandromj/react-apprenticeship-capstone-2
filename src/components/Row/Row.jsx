@@ -9,9 +9,9 @@ const RowDiv = styled.div`
   width: 100%;
 `;
 
-function Row({children}) {
+function Row({children, style}) {
   return (
-    <RowDiv>{children}</RowDiv>
+    <RowDiv style={style}>{children}</RowDiv>
   );
 }
 

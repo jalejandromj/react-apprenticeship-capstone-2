@@ -2,10 +2,11 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { useGeneralContext } from '../../state/GeneralContext';
 import Col from '../Col';
 import Row from '../Row';
 
-const HeaderDiv = styled.div`
+const HeaderDiv = styled.nav`
   grid-area: header;
   background-color: rgba(var(--dark-blue));
   box-shadow: 0 9px 5px 0 rgb(0 0 0 / 55%);
@@ -22,13 +23,13 @@ const HeaderDiv = styled.div`
 `;
 
 function Header() {
-  //const displaySidebar = true;
+  const { displaySidebar, setDisplaySidebar } = useGeneralContext();
 
   return (
     <HeaderDiv id="header">
       <Row>
         <Col md={1} lg={1} xl={3} style={{ alignItems: 'center', justifyContent: 'center' }}>
-          SVG
+          <div onClick={() => setDisplaySidebar(!displaySidebar)}>TestBtn</div>
         </Col>
         <Col md={7} lg={9} xl={3} style={{ justifyContent: 'center' }}>
           Search bar

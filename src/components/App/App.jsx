@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import GeneralContextProvider from '../../state/GeneralContext';
 import Layout from '../Layout';
 import HomePage from '../../pages/Home';
 //import './App.css';
@@ -8,11 +9,13 @@ import HomePage from '../../pages/Home';
 function App() {
   return (
     <BrowserRouter>
-      <Layout >
-        <Routes>
-          <Route exact path="/" element={<HomePage />}></Route>
-        </Routes>
-      </Layout >
+      <GeneralContextProvider>
+        <Layout >
+          <Routes>
+            <Route exact path="/" element={<HomePage />}></Route>
+          </Routes>
+        </Layout >
+      </GeneralContextProvider>
     </BrowserRouter>
   );
 }

@@ -2,10 +2,12 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { useGeneralContext } from '../../state/GeneralContext';
 import Col from '../Col';
+import Button from '../Button';
 import Row from '../Row';
 
-const SidebarDiv = styled.div`
+const SidebarDiv = styled.nav`
   grid-area: sidebar;
   background-color: rgb(var(--dark-blue) / 70%);
   color: rgb(var(--discreet-white));
@@ -13,6 +15,8 @@ const SidebarDiv = styled.div`
 `;
 
 function Sidebar() {
+  const { setDate } = useGeneralContext();
+
   return (
     <SidebarDiv id="sidebar">
       <Row>
@@ -20,17 +24,12 @@ function Sidebar() {
           sm={12}
           className="sidebar-col"
         >
-          <button className="sidebar-btn">On your date!</button> {{/*Input date*/}}
+          <Button onClick={() => setDate(null)}>On your date!</Button>
         </Col>
       </Row>
       <Row>
         <Col sm={12} className="sidebar-col">
-          <button className="sidebar-btn">Feeling lucky...?</button> {{/*Random date*/}}
-        </Col>
-      </Row>
-      <Row>
-        <Col sm={12} className="sidebar-col">
-          <button className="sidebar-btn">What happened on...?</button> {{/*Important dates*/}}
+          <Button >Feeling lucky?</Button>
         </Col>
       </Row>
     </SidebarDiv>

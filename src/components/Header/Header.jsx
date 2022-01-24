@@ -1,32 +1,15 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
 import { useGeneralContext } from '../../state/GeneralContext';
 import Col from '../Col';
 import Row from '../Row';
-
-const HeaderDiv = styled.nav`
-  grid-area: header;
-  background-color: rgba(var(--dark-blue));
-  box-shadow: 0 9px 5px 0 rgb(0 0 0 / 55%);
-  color: rgba(var(--discreet-white));
-  & > div {
-    position: relative;
-    top: 15%;
-    height: 70%;
-  }
-  & > div > div {
-    display: flex;
-    height: 100%;
-  }
-`;
+import { HeaderNav } from './Header.styles';
 
 function Header() {
   const { displaySidebar, setDisplaySidebar } = useGeneralContext();
 
   return (
-    <HeaderDiv id="header">
+    <HeaderNav id="header">
       <Row>
         <Col md={1} lg={1} xl={3} style={{ alignItems: 'center', justifyContent: 'center' }}>
           <div onClick={() => setDisplaySidebar(!displaySidebar)}>TestBtn</div>
@@ -47,7 +30,7 @@ function Header() {
           Disp
         </Col>
       </Row>
-    </HeaderDiv>
+    </HeaderNav>
   );
 }
 

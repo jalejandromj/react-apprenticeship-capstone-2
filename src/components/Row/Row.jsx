@@ -1,13 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-const RowDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-`;
+import { RowDiv } from './Row.styles';
 
 function Row({children, style}) {
   return (

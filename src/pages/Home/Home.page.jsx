@@ -43,12 +43,12 @@ function HomePage() {
       <>
         <Row>
           <Col md={12} lg={12} xl={12}>
-            <p>There was an error, please try again.</p>
+            <p style={{color: "red"}}>There was an error, please try again.</p>
           </Col>
         </Row>
         <Row>
           <Col md={12} lg={12} xl={12}>
-            <p>{error.response ? `${error.message}. Please check your input date` : null}</p>
+            <p style={{color: "red"}}>{error.response ? `${error.message}. Please check your input date` : null}</p>
           </Col>
         </Row>
       </>

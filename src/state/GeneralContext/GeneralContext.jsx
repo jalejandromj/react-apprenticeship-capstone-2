@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 
+import { getTodaydateYMD } from '../../utils/utils.js';
+
 const GeneralContext = React.createContext(null);
 
 function useGeneralContext() {
@@ -11,9 +13,8 @@ function useGeneralContext() {
 }
 
 function GeneralContextProvider({ children }) {
-  const today = new Date();
-  const dateString= ""+today.getFullYear()+"-"+(today.getMonth()+1).toString().padStart(2,0)+"-"+today.getDate()+"";
-  const [date, setDate] = useState(dateString); //initially load today's date...
+  const today = getTodaydateYMD();
+  const [date, setDate] = useState(today); //initially load today's date...
   const [displaySidebar, setDisplaySidebar] = useState(true);
 
   return (

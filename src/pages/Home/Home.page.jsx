@@ -6,10 +6,10 @@ import Col from '../../components/Col';
 import Button from '../../components/Button';
 import Row from '../../components/Row';
 import ImageCard from '../../components/ImageCard';
+import { getTodaydateYMD } from '../../utils/utils';
 
 function HomePage() {
-  const today = new Date();
-  const dateString= ""+today.getFullYear()+"-"+(today.getMonth()+1).toString().padStart(2,0)+"-"+today.getDate()+"";
+  const today = getTodaydateYMD();
   const { date, setDate } = useGeneralContext();
   const {response, error} = useApodApi('https://api.nasa.gov/planetary/apod', {date: date});
 
@@ -26,7 +26,7 @@ function HomePage() {
           <Row>
             <Col md={2} lg={2} xl={2}>
               <label >Date:</label>
-              <input type="date" id="date" name="date" min="1995-01-01" max={dateString} required/>
+              <input type="date" id="date" name="date" min="1995-01-01" max={today} required/>
             </Col>
             <Col md={1} lg={1} xl={1} style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Button blue submit>Submit</Button>

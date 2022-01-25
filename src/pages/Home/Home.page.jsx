@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 
+import MaskInput from 'react-maskinput';
+
 import { useGeneralContext } from '../../state/GeneralContext';
 import useApodApi from '../../utils/hooks/useApodApi';
 import Col from '../../components/Col';
 import Button from '../../components/Button';
 import Row from '../../components/Row';
 import ImageCard from '../../components/ImageCard';
-import { getTodayDateYMD } from '../../utils/utils';
 
 function HomePage() {
-  const today = getTodayDateYMD();
   const { date, setDate } = useGeneralContext();
   const {response, error} = useApodApi('https://api.nasa.gov/planetary/apod', {date: date});
+
 
   const RenderDateInput = () => {
 
@@ -26,7 +27,7 @@ function HomePage() {
           <Row>
             <Col md={2} lg={2} xl={2}>
               <label >Date:</label>
-              <input type="date" id="date" name="date" min="1995-01-01" max={today} required/>
+              <MaskInput name="date" id="date" alwaysShowMask maskString="YYYY-MM-DD" mask="0000-00-00" size={30}/>
             </Col>
             <Col md={1} lg={1} xl={1} style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Button blue submit>Submit</Button>
@@ -57,6 +58,7 @@ function HomePage() {
 
   function handleDateSubmit(event) {
     event.preventDefault();
+    console.log(event.target.date.value);
     setDate(event.target.date.value);
   }
 

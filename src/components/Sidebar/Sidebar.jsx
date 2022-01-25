@@ -20,11 +20,6 @@ function Sidebar() {
           <Button onClick={() => setDate(null)}>On your date!</Button>
         </Col>
       </Row>
-      <Row>
-        <Col sm={12} className="sidebar-col">
-          <Button >Feeling lucky?</Button>
-        </Col>
-      </Row>
     </SidebarNav>
   );
 }

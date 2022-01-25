@@ -1,24 +1,43 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks'
 
-import Layout from './Layout.component.jsx';
-import AuthProvider from '../../providers/Auth';
+import GeneralContextProvider from '../../state/GeneralContext';
+import { useGeneralContext } from '../../state/GeneralContext';
+import Layout from './Layout.jsx';
+
+const RenderHtml = () => {
+  return(
+    <GeneralContextProvider>
+      <Layout><div>Test children</div></Layout>
+    </GeneralContextProvider>
+  );
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<AuthProvider><Layout /></AuthProvider>, div);
+  render(
+    <RenderHtml/>
+  );
 });
 
-test("It should render initial basic elements", () => {
-    const { getByRole, queryAllByRole, queryByText } = render(
-      <AuthProvider><Layout /></AuthProvider>
-    );
-    const input = getByRole("textbox");
-    const buttons = queryAllByRole("button");
-    const favourites = queryByText("Favourites");
+it("renders children", () => {
+  render(
+    <RenderHtml/>
+  );
+  
+  const child = screen.getByText(/Test children/i);
+  expect(child).toBeInTheDocument();
+});
 
-    expect(input).toContainHTML('placeholder="tampico alien mapaches"');
-    expect(buttons).toHaveLength(3);
-    expect(favourites).not.toBeInTheDocument();
+it('displays sidebar', async () => {
+  const wrapper = ({ children, displaySidebar }) => <GeneralContextProvider displaySidebar={renderHook}>{children}</GeneralContextProvider>
+  const { result, rerender } = renderHook(() => useGeneralContext(), { wrapper, initialProps: {displaySidebar: true} })
+
+  render(
+    <RenderHtml/>
+  );
+
+  const sidebarBtn = screen.getByText(/On your date!/i);
+
+  expect(sidebarBtn).toBeInTheDocument(); //Initially, displaySidebar is set to TRUE
 });

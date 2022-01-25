@@ -6,10 +6,10 @@ import Col from '../../components/Col';
 import Button from '../../components/Button';
 import Row from '../../components/Row';
 import ImageCard from '../../components/ImageCard';
-import { getTodaydateYMD } from '../../utils/utils';
+import { getTodayDateYMD } from '../../utils/utils';
 
 function HomePage() {
-  const today = getTodaydateYMD();
+  const today = getTodayDateYMD();
   const { date, setDate } = useGeneralContext();
   const {response, error} = useApodApi('https://api.nasa.gov/planetary/apod', {date: date});
 

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import { getTodaydateYMD } from '../../utils/utils.js';
+import { getTodayDateYMD } from '../../utils/utils.js';
 
 const GeneralContext = React.createContext(null);
 
@@ -13,7 +13,7 @@ function useGeneralContext() {
 }
 
 function GeneralContextProvider({ children }) {
-  const today = getTodaydateYMD();
+  const today = getTodayDateYMD();
   const [date, setDate] = useState(today); //initially load today's date...
   const [displaySidebar, setDisplaySidebar] = useState(true);
 

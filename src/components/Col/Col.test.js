@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
-import Row from './Row';
+import Col from './Col';
 
-it('renders Row without crashing', () => {
+it('renders Col without crashing', () => {
   render(
-    <Row/>
+    <Col/>
   );
 });
 
 it('renders children without crashing', () => {
   render(
-    <Row><div>Test children</div></Row>
+    <Col><div>Test children</div></Col>
   );
 
   const child = screen.getByText(/Test children/i);
@@ -18,7 +18,7 @@ it('renders children without crashing', () => {
 
 it('inherits styles prop correctly', () => {
   render(
-    <Row style={{color: "red"}}>Test style</Row>
+    <Col style={{color: "red"}}>Test style</Col>
   );
 
   const styleRow = screen.getByText(/Test style/i);

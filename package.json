@@ -19,11 +19,11 @@
     "eject": "react-scripts eject",
     "lint": "eslint ./src --ext .js,.jsx",
     "lint:fix": "eslint ./src --ext .js,.jsx --fix",
-    "start": "react-scripts start",
     "prepare": "husky install",
+    "start": "react-scripts start",
     "stylelint": "stylelint src/*.css src/**/*.css",
     "stylelint:fix": "stylelint src/*.css src/**/*.css --fix",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage .",
     "verify": "npm run lint && npm run stylelint"
   },
   "eslintConfig": {
@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^7.0.2",
     "eslint": "^8.7.0",
     "eslint-plugin-react": "^7.28.0",
     "husky": "^7.0.4",

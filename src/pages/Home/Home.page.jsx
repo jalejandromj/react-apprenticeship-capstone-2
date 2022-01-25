@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import {Helmet} from "react-helmet";
 import MaskInput from 'react-maskinput';
 
 import { useGeneralContext } from '../../state/GeneralContext';
@@ -10,9 +11,18 @@ import Row from '../../components/Row';
 import ImageCard from '../../components/ImageCard';
 
 function HomePage() {
+  const [ title, setTitle ] = useState("Img of the Day!");
   const { date, setDate } = useGeneralContext();
   const {response, error} = useApodApi('https://api.nasa.gov/planetary/apod', {date: date});
 
+  const RenderHelmet = () => {
+
+    return (
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+    );
+  }
 
   const RenderDateInput = () => {
 
@@ -63,11 +73,15 @@ function HomePage() {
   }
 
   useEffect(() => {
+    if(response){
+      setTitle(response.data.title);
+    }
 
   }, [response, date]);
 
   return (
     <section className="home-page">
+      <RenderHelmet />
       <Row style={{height: "10%"}}>
         <Col md={12} lg={12} xl={12}>
           <h1>What mysteries may the galaxy hold for you today?</h1>

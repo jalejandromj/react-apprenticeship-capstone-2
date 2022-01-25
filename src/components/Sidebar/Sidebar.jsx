@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useGeneralContext } from '../../state/GeneralContext';
+import { getTodayDateYMD } from '../../utils/utils.js';
 import Col from '../Col';
 import Button from '../Button';
 import Row from '../Row';
@@ -14,8 +15,12 @@ function Sidebar() {
     <SidebarNav id="sidebar">
       <Row>
         <Col
+            sm={12}
+          >
+          <Button onClick={() => setDate(getTodayDateYMD())}>Today</Button>
+        </Col>
+        <Col
           sm={12}
-          className="sidebar-col"
         >
           <Button onClick={() => setDate(null)}>On your date!</Button>
         </Col>

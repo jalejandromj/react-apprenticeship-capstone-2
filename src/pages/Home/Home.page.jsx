@@ -93,7 +93,7 @@ function HomePage() {
       {(date && response && !error) &&
         <Row style={{height: "90%"}}>
           <Col md={12} lg={12} xl={12} style={{height: "100%"}}>
-            <ImageCard img={response.data.url} title={response.data.title} explanation={response.data.explanation} date={response.data.date}/>
+            <ImageCard isVideo={response.data.media_type} media={response.data.url} title={response.data.title} explanation={response.data.explanation} date={response.data.date}/>
           </Col>
         </Row>
       }

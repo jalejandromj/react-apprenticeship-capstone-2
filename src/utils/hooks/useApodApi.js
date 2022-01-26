@@ -7,6 +7,7 @@ const useApodApi = (url, params) => {
   const [error, setError] = useState('');
   
   useEffect(() => {
+    let isMounted = true;   
     if(params.date !== null){
       axios
         .get(url, {
@@ -17,19 +18,25 @@ const useApodApi = (url, params) => {
         })
         .then(function (response) {
           // handle success
-          console.log('[SUCCESS] APOD Api call...', response);
-          setResponse(response);
-          setError(null);
+          //console.log('[SUCCESS] APOD Api call...', response);
+          if (isMounted){
+            setResponse(response);
+            setError(null);
+          }
         })
         .catch(function (error) {
           // handle error
           console.log('[ERROR] On APOD Api call...', error);
-          setError(error);
-          setResponse(null);
+          if (isMounted){
+            setError(error);
+            setResponse(null);
+          }
         });
-      }else{
-        setResponse(null);
-      }
+    }else{
+      setResponse(null);
+    }
+
+    return () => { isMounted = false };
   }, [url, params.date]);
 
   return { response, error };

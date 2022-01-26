@@ -9,6 +9,6 @@ const mockResponse = {
 		"title": "Moonrise Eclipse",
 		"url": "https://apod.nasa.gov/apod/image/1802/20180131TrisulTLE424_1043.jpg"
 	}
-};
+}
 
 export default mockResponse;

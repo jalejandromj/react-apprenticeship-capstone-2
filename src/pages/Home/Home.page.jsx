@@ -13,7 +13,14 @@ import ImageCard from '../../components/ImageCard';
 function HomePage() {
   const [ title, setTitle ] = useState("Img of the Day!");
   const { date, setDate } = useGeneralContext();
-  const {response, error} = useApodApi('https://api.nasa.gov/planetary/apod', {date: date});
+
+  const params = {
+    date: date,
+  };
+  const { response, error } = useApodApi(
+    'https://api.nasa.gov/planetary/apod', 
+    params
+  );
 
   const RenderHelmet = () => {
 

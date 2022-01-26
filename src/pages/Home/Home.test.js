@@ -1,11 +1,13 @@
 import React from 'react';
-import { render, screen, waitFor, act } from '@testing-library/react';
-//import { renderHook } from '@testing-library/react-hooks'
+import ReactDOM from 'react-dom';
+import { render, screen, waitFor } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
+import { renderHook } from '@testing-library/react-hooks';
 
 import axios from 'axios';
 
 import GeneralContextProvider from '../../state/GeneralContext';
-//import { useGeneralContext } from '../../state/GeneralContext';
+import { useGeneralContext } from '../../state/GeneralContext';
 import Home from './Home.page.jsx';
 import mockResponse from '../../utils/mockApodApiResponse';
 
@@ -17,35 +19,44 @@ const RenderHtml = () => {
   );
 };
 
-/*const url = 'https://api.nasa.gov/planetary/apod';
-const params = {
-  date: '2020-01-01'
-};
-jest.mock("axios", () => ({
-  get: jest.fn((url, params) => { 
-    return new Promise((resolve) => {
-      url = url
-      params = params
-      resolve(false)
+let url = '';
+let body = {};
+
+  /*jest.mock("axios", () => ({
+    get: jest.fn((_url, _body) => { 
+      return new Promise((resolve) => {
+        url = _url
+        body = _body
+        resolve(true)
+      })
     })
-  })
-}));
-const mockApodApiResponse = mockResponse;*/
+  }));*/
 
-it('renders Home without crashing', () => {
-  render(
-    <RenderHtml/>
-  );
+it('renders without crashing', async () => {
+  await act( async () => render(<RenderHtml/>));
 });
 
-it('doest NOT render date input at first', async () => {
-  /*await act( async () => render(<RenderHtml/>));
-  console.log(mockApodApiResponse);
-  act(() => {
-    axios.get.mockImplementationOnce(() => Promise.resolve(response));
-  });*/
+it('doest NOT render date input, nor error at first', async () => {
+  await act( async () => render(<RenderHtml/>));//First wait for all the component to render, even async methods like api call...
 
-  /*expect(axios.get).toHaveBeenCalledTimes(2);*/
-  /*const inputDate = screen.queryByText(/Submit/i);
-  await expect(inputDate).toBe(null);*/
+  const constantHeader = screen.getByText("What mysteries may the galaxy hold for you today?");
+  const errorMssg = screen.queryByText("There was an error, please try again.");
+  const inputDate = screen.queryByText("Submit");
+
+  expect(constantHeader).toBeInTheDocument();
+  expect(errorMssg).toBe(null);
+  expect(inputDate).toBe(null);
 });
+
+/*test('Initial search with the YT API', async () => {
+  const response = mockResponse;
+
+  axios.get.mockResolvedValue(response);
+
+  await act( async () => render(<RenderHtml/>));
+
+  expect(axios.get).toHaveBeenCalledTimes(1);
+})*/
+
+
+
